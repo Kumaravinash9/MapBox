@@ -39,7 +39,7 @@
      font-style: italic;
      height: 8vh;
      max-height: 50px;
-     min-height: 20px;
+     min-height: 30px;
      z-index: 2;
      cursor: pointer;
  }
@@ -199,7 +199,7 @@
 
      document.querySelector("input").addEventListener("input",function(e){
      this.addEventListener("keypress",function(e){
-     if(e.code==="Enter")
+     if(e.code==="Enter"||e.code==="Tab")
 {    var values=this.value;
      this.value=" ";
      postData("https://desolate-temple-27342.herokuapp.com/", { address:values})
