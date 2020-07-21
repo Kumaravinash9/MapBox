@@ -14,36 +14,32 @@ var express  = require("express"),
  dotenv.config({
   path:"./config/config.env"
 });
-
- app.use(express.static(__dirname+"public"));
-
-
-
-
-  app.get("/",function(req,res){
-       res.render("map")});
-
-
+ app.use(express.static("public"));
+ 
+/********************ROUTES*****************/
 
 var data;
-  app.post("/", async (req,res,next)=>{
-   data  = await geocoder.geocode(req.body);
 
-    res.json({
-  latlngdata:data,
-    })});
+ app.get("/",function(req,res){
+ res.render("map")});
+
+
+ app.post("/", async (req,res,next)=>{
+ data  = await geocoder.geocode(req.body);
+ res.json({
+ latlngdata:data,
+ })});
  
-    app.get("/map",function(req,res){
-      res.json({
-        latlngdata:data,
-      })
-    })
+//This Route send the Json data to navigator.ejs 
 
-    app.get("/navigator",function(req,res){
-       
-      res.render("navigator");
+ app.get("/map",function(req,res){
+ res.json({
+ latlngdata:data,
+ })})
 
-    });
+
+ app.get("/navigator",function(req,res){
+ res.render("navigator");});
 
 /*********************PORT ****************/
 
